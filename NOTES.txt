@@ -1,0 +1,1 @@
+USE devShell when on Windows, otherwise SDL does not compile
