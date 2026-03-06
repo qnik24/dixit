@@ -9,7 +9,7 @@ set(BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BIN_DIR}") # shared lib output dir
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BIN_DIR}") # static lib output dir
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BIN_DIR}/lib") # static lib output dir
 
 foreach(cfg Debug Release RelWithDebInfo MinSizeRel)
     string(TOUPPER ${cfg} CFG)

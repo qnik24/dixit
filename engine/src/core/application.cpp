@@ -1,5 +1,5 @@
 // relative path, so no include directory setup for CMAKE
-#include "application.h"
+#include <core/application.h>
 
 eden::core::Application::Application() {
 
