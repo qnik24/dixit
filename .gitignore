@@ -70,5 +70,5 @@ Testing/
 .cache/
 
 # project specific
-NOTES.txtü
-engine/vendor/*/
+NOTES.txt
+third_party/*/

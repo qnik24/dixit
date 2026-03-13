@@ -1,3 +1,8 @@
-add_executable(sandbox src/sandbox.cpp)
+add_executable(sandbox
+	sandbox.cpp
+)
 
-target_link_libraries(sandbox PRIVATE engine)
+target_link_libraries(sandbox
+	PRIVATE launcher
+	PRIVATE eden
+)

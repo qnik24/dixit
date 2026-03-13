@@ -1,22 +1,24 @@
-cmake_minimum_required(VERSION 4.1)
-project(EDEN
-	VERSION 0.0.1
-	DESCRIPTION "A custom 3D game engine"
-	LANGUAGES C CXX)
+cmake_minimum_required(VERSION 4.0) # the version installed on my machine for now
 
-set(CMAKE_CXX_STANDARD 17) # use C++17 for now
-set(BIN_DIR "${CMAKE_SOURCE_DIR}/bin")
+project(eden
+	VERSION 0.0.0.1
+	DESCRIPTION "A 3D game engine"
+	LANGUAGES CXX C
+)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BIN_DIR}") # shared lib output dir
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BIN_DIR}/lib") # static lib output dir
+set(CMAKE_CXX_STANDARD 17)
 
-foreach(cfg Debug Release RelWithDebInfo MinSizeRel)
-    string(TOUPPER ${cfg} CFG)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CFG} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${cfg})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CFG} ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/${cfg})
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CFG} ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/${cfg})
-endforeach()
+# set a root bin directory for output
+# note to self, learn about CMake generator expressions: 
+# https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/lib/$<CONFIG>)
+
+set(THIRD_PARTY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
+
+add_subdirectory(third_party)
 
 add_subdirectory(engine)
+add_subdirectory(launcher)
 add_subdirectory(sandbox)
