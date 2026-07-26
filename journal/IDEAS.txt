@@ -1,0 +1,20 @@
+you are making a game with the engine parts stripped out into something else!
+NEVER FORGET, GAME; WITH A ENGINE. NOT AN ENGINE WITH A GAME.
+--------------------------------------------------------------------------------
+create a launcher again, but do something like the following:
+	+ define the platform layer
+	+ platform layer is linked against the engine + launcher
+	+ define an interface library that is linked to:
+		* engine PUBLICLY
+		* launcher PRIVATELY
+	+ this interface then gets linked to the game exe
+	+ this way, you get main control again, init platform there
+	+ this way, a hurdle is no more, focus on more important things
+
+if you need hot-reloading for your game later, just make the inherited application class
+dll importable like you did for your engine, and make the launcher the executable
+it will be done
+
+Go back to the Platform object init/terminate idea for the launcher, as the platform terminate
+is called from the application is destructed -> stupid idea, just scoped out the app creation
+from the main using a dummy function

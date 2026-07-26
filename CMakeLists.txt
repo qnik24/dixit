@@ -1,24 +1,20 @@
-cmake_minimum_required(VERSION 4.0) # the version installed on my machine for now
+cmake_minimum_required(VERSION 4.0.0) # totally random for now
 
-project(eden
-	VERSION 0.0.0.1
-	DESCRIPTION "A 3D game engine"
-	LANGUAGES CXX C
-)
+project(dixitWorkshop VERSION 0.0.1
+	DESCRIPTION "axiom Engine Orchestrator"
+	LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# set a root bin directory for output
-# note to self, learn about CMake generator expressions: 
-# https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/$<CONFIG>)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin/lib/$<CONFIG>)
+# I am not using modules for now
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
-set(THIRD_PARTY_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/lib")
 
-add_subdirectory(third_party)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_subdirectory(engine)
-add_subdirectory(launcher)
+add_subdirectory(dixit)
 add_subdirectory(sandbox)

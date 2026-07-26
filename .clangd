@@ -1,0 +1,5 @@
+CompileFlags:
+  CompilationDatabase: "build"
+  Remove: [-fdeps-format=*, -fmodule-mapper=*]
+Completion:
+  HeaderInsertion: Never
