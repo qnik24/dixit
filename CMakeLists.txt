@@ -1,20 +1,22 @@
-cmake_minimum_required(VERSION 4.0.0) # totally random for now
-
-project(dixitWorkshop VERSION 0.0.1
-	DESCRIPTION "axiom Engine Orchestrator"
-	LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.20)
+project(DixitEngine VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# I am not using modules for now
-set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/lib")
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Single-config generators (Ninja, Make)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin) # .exe, .dll
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin) # .so, .dylib
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/lib) # .lib, .a
+
+# Multi-config generators (Visual Studio, Xcode)
+foreach(OUTPUT_CONFIG IN LISTS CMAKE_CONFIGURATION_TYPES)
+	string(TOUPPER ${OUTPUT_CONFIG} CONFIG)
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONFIG} ${CMAKE_SOURCE_DIR}/bin/${OUTPUT_CONFIG})
+	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONFIG} ${CMAKE_SOURCE_DIR}/bin/${OUTPUT_CONFIG})
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONFIG} ${CMAKE_SOURCE_DIR}/lib/${OUTPUT_CONFIG})
+endforeach()
+
 add_subdirectory(dixit)
-add_subdirectory(sandbox)
+add_subdirectory(game)
